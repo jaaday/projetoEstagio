@@ -1,12 +1,140 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-    <h:head>
-        <title>Facelet Title</title>
-    </h:head>
-    <h:body>
-        Hello from Facelets
-    </h:body>
-</html>
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
+    <h:head>
+        <title>Primeiro Passo</title>
+    </h:head>
+
+    <ui:decorate template="/JanelaPrincipal.xhtml">
+        <ui:define  name="centro">
+            <h:form>
+                <p:tabView style="height: 1000px">
+                    <p:tab title="Passo 1">
+
+                        <p:panel>
+                            <h:outputText value="CPF/CNPJ:*" style="display: inline" />
+                            <h:outputText value="Nome:*" style="display: inline; margin-left: 130px" />
+                            <h:outputText value="" style="display: block;" />    
+                            <p:inputMask requiredMessage="Campo CPF/CNPJ Obrigatório!" required="true" mask="99999999999999" value="#{empresaMB.negocio.empresa.cpfCnpj}" style="display: inline; margin-right: 20px; margin-top: 10px; width: 200px; height: 30px" />    
+                            <p:inputText requiredMessage="Campo NOME Obrigatório!" required="true" value="#{empresaMB.negocio.empresa.empresarioId.nome}" style="width: 440px; height: 30px"/>  
+
+                            <h:outputText value="Contador?*" style="display: block; margin-top: 20px;" />   
+
+                            <p:selectOneRadio required="true" requiredMessage="Campo CONTADOR Obrigatório!"  id="contador" value="#{empresaMB.negocio.empresa.contador}" style="margin-bottom: 10px">
+                                <f:selectItem itemLabel="Sim" itemValue="true" />
+                                <f:selectItem itemLabel="Não" itemValue="false" />
+                            </p:selectOneRadio>
+
+                            <h:outputText value="DDD:*" style="display: inline;"/>
+                            <h:outputText value="Telefone:*" style="margin-left: 20px"/>
+                            <h:outputText value="Ramal:" style="margin-left: 90px"/>
+                            <h:outputText value="E-mail:*" style="margin-left: 25px"/>
+
+                            <h:outputText value="" style="display: block;" /> 
+
+                            <p:inputMask requiredMessage="Campo DDD Obrigatório!" required="true" mask="999" value="#{empresaMB.negocio.empresa.ddd}" style="display: inline; width: 50px; margin-right: 20px; margin-top: 10px; height: 30px" />
+                            <p:inputMask requiredMessage="Campo TELEFONE Obrigatório!" required="true" mask="99999-9999" value="#{empresaMB.negocio.empresa.telefone}" style="margin-right: 20px; width: 150px; height: 30px" />
+                            <p:inputMask mask="9999" value="#{empresaMB.negocio.empresa.ramal}" style="margin-right: 20px; width: 60px; height: 30px" />
+                            <p:inputText requiredMessage="Campo E-MAIL Obrigatório!" required="true" value="#{empresaMB.negocio.empresa.email}" style="width: 440px; height: 30px"/>
+
+                            <h:outputText value="" style="display: block; margin-bottom: 100px" /> 
+
+                            <p:commandButton value="AVANÇAR" style="float: right" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.segundoPasso()}"/>
+                            <center>
+                                <h:graphicImage url="/imagens/rodape.PNG" height="auto" width="auto"/>
+                            </center>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab title="Passo 2">
+                        <p:panel>
+                            <h:outputText value="CPF/CNPJ:" style="display: block" />
+                            <p:inputMask mask="99999999999999" value="#{empresaMB.negocio.empresa.cpfCnpj}" style="display: block; margin-right: 20px; margin-top: 10px; width: 200px; height: 30px" />    
+
+                            <h:outputText value="Nome:" style="margin-top: 20px; display: block" />
+                            <h:outputText value="" style="display: block;" />    
+                            <p:inputText value="#{empresaMB.negocio.empresa.empresarioId.nome}" style="margin-top: 10px; width: 440px; height: 30px"/>  
+
+                            <h:outputText value="Nome da Mãe:" style="margin-top: 20px; display: block" />
+                            <h:outputText value="" style="display: block;" />    
+                            <p:inputText value="#{empresaMB.negocio.empresa.empresarioId.nomeMae}" style="margin-top: 10px; width: 440px; height: 30px"/>  
+
+                            <h3 style="margin-top: 50px">DADOS DA EMPRESA</h3>
+
+                            <h:outputText value="Município:*" style="margin-top: 20px; display: block" />
+
+                            <p:selectOneMenu id="setor" value="#{empresaMB.negocio.empresa.municipioId}" effect="fade" converter="municipio" style="width: 420px; height: 40px; margin-bottom: 100px">
+                                <f:selectItems value="#{municipioMB.municipios}" var="municipio" itemLabel="#{municipio.nome}" itemValue="#{municipio}" />
+                            </p:selectOneMenu>  
+
+                            <h:outputText value="" style="display: inline;float: right; margin-top: 100px" /> 
+                            <p:commandButton value="AVANÇAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.terceiroPasso()}"/>
+                            <p:commandButton value="VOLTAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-w" iconPos="right" action="#{empresaMB.primeiroPasso()}"/>
+                            <center>
+                                <h:graphicImage url="/imagens/rodape.PNG" height="auto" width="auto"/>
+                            </center>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab title="Passo 3">
+                        CEP*
+                        campocep || botão
+
+                        Tipo Logradouro*   >>  Tipo Imóvel
+                        campologr          >>  campoImo
+
+                        Endereço*
+                        campoEnder
+
+                        Bairro*            >>  Número*
+                        campoBairro        >>  campoNume
+
+                        Complemento*       >>  Metragem*
+                        campoComple        >>  campoMetr
+
+                        Ponto de referência
+                        campoPonto
+
+                        Possui autorização de alteração de uso do solo ou outra     >>  Natureza do Imóvel
+                        permissão?*                                                     ºRural  >> num_registro                 
+                        ºNão  °Sim                                                      ºUrbana >> num_registro
+                        °Sem Regularização              
+
+                        <h:outputText value="CEP*" style="display: block; margin-top: 50px" />
+                        <p:inputMask mask="99.999-999" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.cep}" style="display: inline; margin-right: 20px; margin-bottom: 20px; margin-top: 10px; width: 150px; height: 30px" />    
+                        <p:commandButton value="BUSCAR" style="height: 40px; margin-left: 20px" icon="ui-icon-search" iconPos="left"/>
+
+                        <h:outputText value="" style="display: block; margin-bottom: 10px;" />
+
+                        <h:outputText value="Tipo Logradouro:*" style="margin-top: 20px; margin-bottom: 10px; display: inline" />
+                        <h:outputText value="Tipo Imóvel:*" style="margin-left: 250px;"/>
+
+                        <h:outputText value="" style="display: block; margin-bottom: 10px;" />                      
+
+                        <p:selectOneMenu id="tipoLogra" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.tipoLogradouroId}" effect="fade" converter="tipoLogradouro" style="width: 330px; margin-bottom: 20px; height: 40px">
+                            <f:selectItems value="#{tipoLogradouroMB.tipoLogradouros}" var="tipoLogradouro" itemLabel="#{tipoLogradouro.descricao}" itemValue="#{tipoLogradouro}" />
+                        </p:selectOneMenu> 
+
+                        <p:selectOneMenu id="tipoImov" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.tipoImovelId}" effect="fade" converter="tipoImovel" style="width: 330px; margin-left: 40px; height: 40px">
+                            <f:selectItems value="#{tipoImovelMB.tipoImoveis}" var="tipoImovel" itemLabel="#{tipoImovel.descricao}" itemValue="#{tipoImovel}" />
+                        </p:selectOneMenu> 
+                        
+                        <h:outputText value="" style="display: inline;float: right; margin-top: 100px" /> 
+                        <p:commandButton value="AVANÇAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.quartoPasso()}"/>
+                        <p:commandButton value="VOLTAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-w" iconPos="right" action="#{empresaMB.segundoPasso()}"/>
+
+
+                    </p:tab>
+                    <p:tab title="Passo 4">
+
+                    </p:tab>
+                </p:tabView>
+            </h:form>
+
+        </ui:define>
+    </ui:decorate>
+
+</html>
