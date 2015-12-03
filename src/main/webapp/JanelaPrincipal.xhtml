@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>MEI - Micro Empreendedor Individual</title>
+    </h:head>
+    <h:body>
+        <p:layout>
+            <p:layoutUnit position="north" size="180" closable="true" collapsible="true">
+                <center>
+                    <h:graphicImage url="/imagens/logo.png" height="auto" width="auto"/>
+                </center>
+            </p:layoutUnit>
+            <p:layoutUnit position="west" size="270">               
+                <h:form>
+                    <p:growl autoUpdate="true"/>
+                    <p:menu toggleable="true">                      
+                        <p:separator />
+                        <p:submenu label="Abertura" >  
+                            <p:menuitem value="1º Passo" outcome="/mei/PrimeiroPasso" icon="ui-icon-signal" />                                                    
+                            <p:menuitem value="2º Passo" outcome="/mei/SegundoPasso" icon="ui-icon-signal" />
+                            <p:menuitem value="3º Passo" outcome="/mei/TerceiroPasso" icon="ui-icon-signal" />
+                            <p:menuitem value="4º Passo" outcome="/mei/QuartoPasso" icon="ui-icon-signal" />
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="centro">
+
+                </ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
+

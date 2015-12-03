@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Segundo Passo</title>
+    </h:head>
+
+    <ui:decorate template="/JanelaPrincipal.xhtml">
+        <ui:define  name="centro">
+            <p:panel style="margin-left: 25px">
+                <h1 style="color: #006699">M.E.I. - ABERTURA</h1>
+                <h:outputText style="color: #999999; font-style: normal" value="* OS CAMPOS MARCADOS COM ASTERISCO SÃO DE PREENCHIMENTOOBRIGATÓRIO" />
+                <p:separator/>
+                <h3>DADOS DO EMPRESÁRIO</h3>
+                <h:form>
+                    <h:outputText value="CPF/CNPJ:" style="display: block" />
+                    <p:inputMask mask="99999999999999" value="#{empresaMB.negocio.empresa.cpfCnpj}" style="display: block; margin-right: 20px; margin-top: 10px; width: 200px; height: 30px" />    
+
+                    <h:outputText value="Nome:" style="margin-top: 20px; display: block" />
+                    <h:outputText value="" style="display: block;" />    
+                    <p:inputText value="#{empresaMB.negocio.empresa.empresarioId.nome}" style="margin-top: 10px; width: 440px; height: 30px"/>  
+
+                    <h:outputText value="Nome da Mãe:" style="margin-top: 20px; display: block" />
+                    <h:outputText value="" style="display: block;" />    
+                    <p:inputText value="#{empresaMB.negocio.empresa.empresarioId.nomeMae}" style="margin-top: 10px; width: 440px; height: 30px"/>  
+
+                    <h3 style="margin-top: 50px">DADOS DA EMPRESA</h3>
+
+                    <h:outputText value="Município:*" style="margin-top: 20px; display: block" />
+
+                    <p:selectOneMenu id="setor" value="#{empresaMB.negocio.empresa.municipioId}" effect="fade" converter="municipio" style="width: 420px; height: 40px; margin-bottom: 100px">
+                        <f:selectItems value="#{municipioMB.municipios}" var="municipio" itemLabel="#{municipio.nome}" itemValue="#{municipio}" />
+                    </p:selectOneMenu>  
+
+                    <h:outputText value="" style="display: inline;float: right; margin-top: 100px" /> 
+                    <p:commandButton value="AVANÇAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.terceiroPasso()}"/>
+                    <p:commandButton value="VOLTAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-w" iconPos="right" action="#{empresaMB.primeiroPasso()}"/>
+
+                </h:form>
+                <center>
+                    <h:graphicImage url="/imagens/rodape.PNG" height="auto" width="auto"/>
+                </center>
+            </p:panel>
+
+        </ui:define>
+    </ui:decorate>
+
+</html>
+

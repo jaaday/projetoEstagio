@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Primeiro Passo</title>
+    </h:head>
+
+    <ui:decorate template="/JanelaPrincipal.xhtml">
+        <ui:define  name="centro">
+            <p:panel style="margin-left: 25px">
+                <h1 style="color: #006699">M.E.I. - ABERTURA</h1>
+                <h:outputText style="color: #999999; font-style: normal" value="* OS CAMPOS MARCADOS COM ASTERISCO SÃO DE PREENCHIMENTOOBRIGATÓRIO" />
+                <p:separator/>
+                <h3>DADOS DO SOLICITANTE</h3>
+                <h:form>
+                    <h:outputText value="CPF/CNPJ:*" style="display: inline" />
+                    <h:outputText value="Nome:*" style="display: inline; margin-left: 130px" />
+                    <h:outputText value="" style="display: block;" />    
+                    <p:inputMask requiredMessage="Campo CPF/CNPJ Obrigatório!" required="true" mask="99999999999999" value="#{empresaMB.negocio.empresa.cpfCnpj}" style="display: inline; margin-right: 20px; margin-top: 10px; width: 200px; height: 30px" />    
+                    <p:inputText requiredMessage="Campo NOME Obrigatório!" required="true" value="#{empresaMB.negocio.empresa.empresarioId.nome}" style="width: 440px; height: 30px"/>  
+
+                    <h:outputText value="Contador?*" style="display: block; margin-top: 20px;" />   
+
+                    <p:selectOneRadio required="true" requiredMessage="Campo CONTADOR Obrigatório!"  id="contador" value="#{empresaMB.negocio.empresa.contador}" style="margin-bottom: 10px">
+                        <f:selectItem itemLabel="Sim" itemValue="true" />
+                        <f:selectItem itemLabel="Não" itemValue="false" />
+                    </p:selectOneRadio>
+
+                    <h:outputText value="DDD:*" style="display: inline;"/>
+                    <h:outputText value="Telefone:*" style="margin-left: 20px"/>
+                    <h:outputText value="Ramal:" style="margin-left: 90px"/>
+                    <h:outputText value="E-mail:*" style="margin-left: 25px"/>
+
+                    <h:outputText value="" style="display: block;" /> 
+
+                    <p:inputMask requiredMessage="Campo DDD Obrigatório!" required="true" mask="999" value="#{empresaMB.negocio.empresa.ddd}" style="display: inline; width: 50px; margin-right: 20px; margin-top: 10px; height: 30px" />
+                    <p:inputMask requiredMessage="Campo TELEFONE Obrigatório!" required="true" mask="99999-9999" value="#{empresaMB.negocio.empresa.telefone}" style="margin-right: 20px; width: 150px; height: 30px" />
+                    <p:inputMask mask="9999" value="#{empresaMB.negocio.empresa.ramal}" style="margin-right: 20px; width: 60px; height: 30px" />
+                    <p:inputText requiredMessage="Campo E-MAIL Obrigatório!" required="true" value="#{empresaMB.negocio.empresa.email}" style="width: 440px; height: 30px"/>
+                    
+                    <h:outputText value="" style="display: block; margin-bottom: 100px" /> 
+                    
+                    <p:commandButton value="AVANÇAR" style="float: right" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.segundoPasso()}"/>
+                    <h:outputText value="" style="display: block;" /> 
+
+                </h:form>
+                <center>
+                    <h:graphicImage url="/imagens/rodape.PNG" height="auto" width="auto"/>
+                </center>
+            </p:panel>
+        </ui:define>
+    </ui:decorate>
+
+</html>
