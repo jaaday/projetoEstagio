@@ -48,7 +48,7 @@ public class EmpresaRNTest {
     }
 
     /**
-     * Test of inserir method, of class EmpresaRN.
+     * Test do método inserir(), da classe EmpresaRN.
      */
     @Test
     public void testInserir() {
@@ -77,13 +77,47 @@ public class EmpresaRNTest {
         Empresa result = empresaRN.buscar(empresaRN.getEmpresa().getId());
         Empresa expectResult = null;
         assertNotEquals(expectResult, result);
-        
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+
     }
 
     /**
-     * Test of deletar method, of class EmpresaRN.
+     * Test do método editar(), da classe EmpresaRN.
+     */
+    @Test
+    public void testEditar() {
+        System.out.println("editar");
+        
+        municipioRN.setMunicipio(new Municipio(3, "NATAL"));
+        municipioRN.inserir();
+        
+        empresarioRN.setEmpresario(new Empresario(3, "06947064422", "jaaday melkran", "Maria Jose de Morais"));
+        empresarioRN.inserir();
+        
+        empresaRN.getEmpresa().setAtivo(true);
+        empresaRN.getEmpresa().setContador(false);
+        empresaRN.getEmpresa().setCpfCnpj("06947064422");
+        empresaRN.getEmpresa().setDdd("84");
+        empresaRN.getEmpresa().setDescricaoObjeto("A empresa teste será inserida 2");
+        empresaRN.getEmpresa().setEmail("jaaday.ufrn@gmail.com");
+        empresaRN.getEmpresa().setNome("JAADAY MELKRAN DA SILVA");
+        empresaRN.getEmpresa().setRamal("000");
+        empresaRN.getEmpresa().setStatusSolicitacao("AGUARDANDO RESPOSTA");
+        empresaRN.getEmpresa().setTelefone("998921339");
+        empresaRN.getEmpresa().setMunicipioId(municipioRN.getMunicipio());
+        empresaRN.getEmpresa().setEmpresarioId(empresarioRN.getEmpresario());
+        empresaRN.inserir();
+        
+        Empresa result = empresaRN.buscar(empresaRN.getEmpresa().getId());
+        String nome1 = result.getNome();
+        assertEquals(nome1, "JAADAY MELKRAN DA SILVA");
+        empresaRN.getEmpresa().setNome("JAADAY MELKRAN");
+        empresaRN.editar();
+        result = empresaRN.buscar(empresaRN.getEmpresa().getId());
+        assertNotEquals(nome1, result.getNome());
+    }
+    
+    /**
+     * Test do método deletar(), da classe EmpresaRN.
      */
     @Test
     public void testDeletar() {
@@ -93,76 +127,54 @@ public class EmpresaRNTest {
         Empresa result = empresaRN.buscar(id);
         Empresa expectResult = null;
         assertEquals(expectResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of editar method, of class EmpresaRN.
-     */
-    @Test
-    public void testEditar() {
-        System.out.println("editar");
-        empresaRN = new EmpresaRN();
-        empresaRN.editar();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of buscar method, of class EmpresaRN.
+     * Test do método buscar, da classe EmpresaRN.
      */
     @Test
     public void testBuscar() {
         System.out.println("buscar");
         Integer id = 1;
-        empresaRN = new EmpresaRN();
         Empresa expResult = null;
         Empresa result = empresaRN.buscar(id);
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of buscarTodos method, of class EmpresaRN.
+     * Test do método buscarTodos, da classe EmpresaRN.
      */
     @Test
     public void testBuscarTodos() {
         System.out.println("buscarTodos");
-        empresaRN = new EmpresaRN();
         List<Empresa> expResult = null;
         List<Empresa> result = empresaRN.buscarTodos();
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getEmpresa method, of class EmpresaRN.
+     * Test do método getEmpresa, da classe EmpresaRN.
      */
     @Test
     public void testGetEmpresa() {
         System.out.println("getEmpresa");
-        empresaRN = new EmpresaRN();
         Empresa expResult = null;
         Empresa result = empresaRN.getEmpresa();
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
-     * Test of setEmpresa method, of class EmpresaRN.
+     * Test do método setEmpresa, da classe EmpresaRN.
      */
     @Test
     public void testSetEmpresa() {
         System.out.println("setEmpresa");
         Empresa empresa = null;
-        empresaRN = new EmpresaRN();
         empresaRN.setEmpresa(empresa);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        assertEquals(empresaRN.getEmpresa(), null);
+        empresa = new Empresa();
+        empresaRN.setEmpresa(empresa);
+        assertNotEquals(empresaRN.getEmpresa(), null);
     }
     
 }
