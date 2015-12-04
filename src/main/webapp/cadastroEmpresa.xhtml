@@ -80,53 +80,52 @@
                         </p:panel>
                     </p:tab>
                     <p:tab title="Passo 3">
-                        CEP*
-                        campocep || botão
+                        <p:panel>
 
-                        Tipo Logradouro*   >>  Tipo Imóvel
-                        campologr          >>  campoImo
+                            Endereço*
+                            campoEnder
 
-                        Endereço*
-                        campoEnder
+                            Bairro*            >>  Número*
+                            campoBairro        >>  campoNume
 
-                        Bairro*            >>  Número*
-                        campoBairro        >>  campoNume
+                            Complemento*       >>  Metragem*
+                            campoComple        >>  campoMetr
 
-                        Complemento*       >>  Metragem*
-                        campoComple        >>  campoMetr
+                            Ponto de referência
+                            campoPonto
 
-                        Ponto de referência
-                        campoPonto
+                            Possui autorização de alteração de uso do solo ou outra     >>  Natureza do Imóvel
+                            permissão?*                                                     ºRural  >> num_registro                 
+                            ºNão  °Sim                                                      ºUrbana >> num_registro
+                            °Sem Regularização              
 
-                        Possui autorização de alteração de uso do solo ou outra     >>  Natureza do Imóvel
-                        permissão?*                                                     ºRural  >> num_registro                 
-                        ºNão  °Sim                                                      ºUrbana >> num_registro
-                        °Sem Regularização              
+                            <h:outputText value="CEP*" style="display: block; margin-top: 50px" />
+                            <p:inputMask mask="99.999-999" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.cep}" style="display: inline; margin-right: 20px; margin-bottom: 20px; margin-top: 10px; width: 150px; height: 30px" />    
+                            <p:commandButton value="BUSCAR" style="height: 40px; margin-left: 20px" icon="ui-icon-search" iconPos="left"/>
 
-                        <h:outputText value="CEP*" style="display: block; margin-top: 50px" />
-                        <p:inputMask mask="99.999-999" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.cep}" style="display: inline; margin-right: 20px; margin-bottom: 20px; margin-top: 10px; width: 150px; height: 30px" />    
-                        <p:commandButton value="BUSCAR" style="height: 40px; margin-left: 20px" icon="ui-icon-search" iconPos="left"/>
+                            <h:outputText value="" style="display: block; margin-bottom: 10px;" />
 
-                        <h:outputText value="" style="display: block; margin-bottom: 10px;" />
+                            <h:outputText value="Tipo Logradouro:*" style="margin-top: 20px; margin-bottom: 10px; display: inline" />
+                            <h:outputText value="Tipo Imóvel:*" style="margin-left: 250px;"/>
 
-                        <h:outputText value="Tipo Logradouro:*" style="margin-top: 20px; margin-bottom: 10px; display: inline" />
-                        <h:outputText value="Tipo Imóvel:*" style="margin-left: 250px;"/>
+                            <h:outputText value="" style="display: block; margin-bottom: 10px;" />                      
 
-                        <h:outputText value="" style="display: block; margin-bottom: 10px;" />                      
+                            <p:selectOneMenu id="tipoLogra" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.tipoLogradouroId}" effect="fade" converter="tipoLogradouro" style="width: 330px; margin-bottom: 20px; height: 40px">
+                                <f:selectItems value="#{tipoLogradouroMB.tipoLogradouros}" var="tipoLogradouro" itemLabel="#{tipoLogradouro.descricao}" itemValue="#{tipoLogradouro}" />
+                            </p:selectOneMenu> 
 
-                        <p:selectOneMenu id="tipoLogra" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.tipoLogradouroId}" effect="fade" converter="tipoLogradouro" style="width: 330px; margin-bottom: 20px; height: 40px">
-                            <f:selectItems value="#{tipoLogradouroMB.tipoLogradouros}" var="tipoLogradouro" itemLabel="#{tipoLogradouro.descricao}" itemValue="#{tipoLogradouro}" />
-                        </p:selectOneMenu> 
+                            <p:selectOneMenu id="tipoImov" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.tipoImovelId}" effect="fade" converter="tipoImovel" style="width: 330px; margin-left: 40px; height: 40px">
+                                <f:selectItems value="#{tipoImovelMB.tipoImoveis}" var="tipoImovel" itemLabel="#{tipoImovel.descricao}" itemValue="#{tipoImovel}" />
+                            </p:selectOneMenu> 
 
-                        <p:selectOneMenu id="tipoImov" value="#{empresaMB.negocio.empresa.empresarioId.enderecoId.tipoImovelId}" effect="fade" converter="tipoImovel" style="width: 330px; margin-left: 40px; height: 40px">
-                            <f:selectItems value="#{tipoImovelMB.tipoImoveis}" var="tipoImovel" itemLabel="#{tipoImovel.descricao}" itemValue="#{tipoImovel}" />
-                        </p:selectOneMenu> 
-                        
-                        <h:outputText value="" style="display: inline;float: right; margin-top: 100px" /> 
-                        <p:commandButton value="AVANÇAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.quartoPasso()}"/>
-                        <p:commandButton value="VOLTAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-w" iconPos="right" action="#{empresaMB.segundoPasso()}"/>
+                            <h:outputText value="" style="display: inline;float: right; margin-top: 100px" /> 
+                            <p:commandButton value="AVANÇAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-e" iconPos="right" action="#{empresaMB.quartoPasso()}"/>
+                            <p:commandButton value="VOLTAR" style="float: right; margin-top: 100px" icon="ui-icon-carat-1-w" iconPos="right" action="#{empresaMB.segundoPasso()}"/>
 
-
+                            <center>
+                                <h:graphicImage url="/imagens/rodape.PNG" height="auto" width="auto"/>
+                            </center>
+                        </p:panel>
                     </p:tab>
                     <p:tab title="Passo 4">
 
